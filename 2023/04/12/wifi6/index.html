@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Wi-Fi6（IEEE802.11ax）技术解读 | Signalista's Blog</title><meta name="keywords" content="网络"><meta name="author" content="Signalista"><meta name="copyright" content="Signalista"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="如今大吹特吹的Wi-Fi6究竟有了什么样的提升">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wi-Fi6（IEEE802.11ax）技术解读">
+<meta property="og:url" content="http://signalista.github.io/2023/04/12/wifi6/index.html">
+<meta property="og:site_name" content="Signalista&#39;s Blog">
+<meta property="og:description" content="如今大吹特吹的Wi-Fi6究竟有了什么样的提升">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/wifi666.jpg">
+<meta property="article:published_time" content="2023-04-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-19T14:24:31.895Z">
+<meta property="article:author" content="Signalista">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/wifi666.jpg"><link rel="shortcut icon" href="/img/icon.ico"><link rel="canonical" href="http://signalista.github.io/2023/04/12/wifi6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Wi-Fi6（IEEE802.11ax）技术解读',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-19 22:24:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="Signalista's Blog" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 旅程</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/wifi666.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Signalista's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 旅程</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Wi-Fi6（IEEE802.11ax）技术解读</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-04-11T16:00:00.000Z" title="发表于 2023-04-12 00:00:00">2023-04-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="font-color-indianred-size-5-1-引言-font"><font color="Indianred" size="5"><strong>1  引言</strong></font></h2>
+<p>        自电气和电子工程师协会在1997年发布无线局域网的第一个技术标准IEEE 802.11开始，在短短的20余年里，Wi-Fi技术经过了数次迭代，从最初仅有2Mbps到现在几个Gbps的带宽，技术标准的条目也不断丰富，从1999年的802.11b到2003年的802.11g，再到后来的802.11n、802.11ac，每一次更新都代表着无线局域网的通信性能有了巨大的提升。2019年，电气电子工程师协会发布了无线局域网的最新标准IEEE 802.11ax，负责商业运营的Wi-Fi联盟为了利于该标准的宣传和使用，也为了便于非专业用户有效区分和记忆，将该标准命名为Wi-Fi6。</p>
+<h2 id="font-color-indianred-size-5-2-wi-fi6的核心技术-font"><font color="Indianred" size="5"><strong>2  Wi-Fi6的核心技术</strong></font></h2>
+<p>        新一代Wi-Fi标准的命名方法，在利于宣传和记忆的同时，也标志着无线局域网技术的巨大突破，在本节，我将详细介绍Wi-Fi6中新加入的核心技术。</p>
+<h3 id="font-color-118899-2-1-ofdma正交频分多址-font"><font color="#118899">2.1  OFDMA正交频分多址</font></h3>
+<p>        从2003年推出的Wi-Fi3（IEEE 802.11a/g）开始，无线通信开始普遍采用OFDM频分复用技术，即将信道可用频段分为若干子频段分别传输数据，由于子信道的子载波具有正交性，而在不同的子载波之间存在清晰的频带间隔，所以在接收端利用相干解调能够比较容易地分离各个频段的信号波形。</p>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.1-0.bmp" width="85%">
+<div class="box1">
+公式2.1-1 双边带OFDM调制解调公式
+</div><br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.1-1.png" width="80%">
+<div class="box1">
+图2.1-1 OFDM正交频分复用系统示意图
+</div><br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.1-2.png" width="80%">
+<div class="box1">
+图2.1-2 OFDM正交频分复用调制解调示意图
+</div><br>
+<p>        OFDM是一种常见的多载波技术，底层原理是将带宽为B的载波划分为带宽为B/N的N个子载波，由于考虑到子载波间的间隔余量，实际上的子载波带宽会小于B/N。OFDM能够大大提高通信速率，提高频带利用率，并提高抗干扰能力。然而，其本质上是一种类似于并行口的多路并发，即在一次传输过程中，所有的子载波全部用于统一用户的服务，在数据量不大的情况下，会造成极大的带宽浪费。</p>
+<p>        OFDMA正交频分多址在OFDM的基础上添加了多址方法，能够在一次发送过程中对不同用户进行服务，在频分复用的同时进行多用户的复用。根据802.11ax标准，整个信道被分为多个被称为“资源单位”（Resource Unit，abbr. RU）的载波组，而每个RU可以分别分配给不同用户，从而在同一时间上满足不同用户的通信需求。</p>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.1-3.png" width="55%">
+<div class="box1">
+图2.1-3 OFDM的时频分配图
+</div><br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.1-4.png" width="55%">
+<div class="box1">
+图2.1-3 OFDMA的时频分配图
+</div><br>
+<h3 id="font-color-118899-2-2-mu-mimo技术-font"><font color="#118899">2.2  MU-MIMO技术</font></h3>
+<p>        MIMO技术，即Multiple-Input Multiple-Output多输入多输出，是指在无线通信中，利用多径效应和信道分集，在相同的带宽上进行多路复用，可以有效提高系统容量、覆盖范围和信噪比。根据发送天线和接收天线的数目，我们可以将发送模式分为以下几类：</p>
+<ul>
+<li>SISO（Single-Input Single-Output）：即采用单根发射天线对接单根接收天线，两根天线之间存在唯一路径，这是最早期的传输方式，其缺点是传输效率较低，可靠性较差。</li>
+</ul>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.2-1.png">
+<div class="box1">
+图2.2-1 SISO通信示意图
+</div>
+<ul>
+<li>SIMO（Single-Input Multiple-Output）：即采用单根发射天线对接多根接收天线，其间存在n条路径（n为接收天线的数量）。由于信号全部来自单根天线，在理想情况下接收端收到的数据是相同的，故不能通过此方法增大带宽；但由于传播路径不同，根据多径效应，接收到的模拟信号会有所差异，但仅需要在n条信号流中还原1条原始信号，因此能够在信道条件较差的情况下提高传输可靠性。<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.2-2.png"></li>
+</ul>
+<div class="box1">
+图2.2-2 SIMO通信示意图
+</div>
+<ul>
+<li>MISO（Multiple-Input Single-Output）：即采用多根发射天线对接单根接收天线，其间存在m条路径（m为发送天线的数量）。多条发送天线能够承载不同的数据流，但由于都要通过同一接收天线，使得其也只能发送同样的数据，故而也只能达到增加可靠性的效果。<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.2-3.png"></li>
+</ul>
+<div class="box1">
+图2.2-3 MISO通信示意图
+</div>
+<ul>
+<li>MIMO（Multiple-Input Multiple-Output）：即采用多根发射天线对接多根接收天线，其间存在m×n条路径，而可承载不同信号的数据流达到了min{m, n}条，在增加可靠性的同时使得传输效率成倍提高。<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.2-4.png"></li>
+</ul>
+<div class="box1">
+图2.2-4 MIMO通信示意图
+</div>
+<p>        而MU-MIMO（Multiple-Users Multiple-Input Multiple-Output）技术在MIMO的基础上，同样增加了多用户的同时接入，这样就避免了由于一位用户占用全部路径造成的资源浪费和等待时间。由于路由器的天线数量可能在4~8根，而受限于自身尺寸的用户端一般只有1~2根，MU-MIMO支持将未配对的路由器天线对接到其他用户，在同一时刻实现AP与多个STA的数据传输，大大减少了通信资源的浪费。</p>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.2-5.png" width="65%">
+<div class="box1">
+图2.2-5 SU-MIMO通信示意图
+</div>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.2-6.png" width="65%">
+<div class="box1">
+图2.2-6 MU-MIMO通信示意图
+</div>
+<p>        在Wi-Fi5中，下行（DL）MU-MIMO已经得到了成功的应用，而在Wi-Fi6中，上行（UL）和下行（DL）将同时允许MU-MIMO，值得注意的是，该技术依赖支持该技术的硬件系统，在Wi-Fi6推广的初期阶段较为受限。</p>
+<h3 id="font-color-118899-2-3-bss着色机制-bss-coloring-font"><font color="#118899">2.3  BSS着色机制（BSS Coloring）</font></h3>
+<p>        为了保证在任意时刻Wi-Fi的一个信道（或RU）上只允许一个用户传输数据，AP和STA需要不断监听该信道（或RU）上是否有正在传输的无线局域网信号，以判断该信道（或RU）是否已被占用，若被占用，则需要进行退避和延迟传输。通过冲突退避，各用户轮流使用信道资源，以达到较好的传输效率。</p>
+<p>        然而随着联网设备的普及，高密度场景下常常出现可用信道过少的现象，阻碍了通信效率，因此，如果能够利用信道的空分复用，将会有效提高数据流量。</p>
+<p>        为了更好地实现空分复用，IEEE 802.11ax引入了一种新的同频传输识别方法，即BSS Coloring机制，通过在PHY报头中添加BSS Coloring字段，对来自不同基本服务集（Basic Service Set，BSS）的信号进行“着色”区分。在传输时，用户需要监听占用信道（或RU）的信号的BSS“颜色”来判断是否会出现数据冲突，若 “颜色”相同则退避，待“颜色”不同时继续发送；在用户接收消息时，需要根据报文的BSS“颜色”判断是否为需要的报文，保留“颜色”相同的报文，丢弃“颜色”不符的报文。</p>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.3-1.png" width="30%">
+<div class="box1">
+图2.3 BSS Coloring机制示意图
+</div>
+<h3 id="font-color-118899-2-4-1024-qam-font"><font color="#118899">2.4  1024-QAM</font></h3>
+<p>        正交幅度调制（Quadrature Amplitude Modulation，QAM）是一种幅度和相位的联合键控，通过幅值和相位两个独立参量的调制，能够以乘数倍的尺度扩大信息的编码效率。如对于某一时刻的信号：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.4-01.bmp" width="48%"></p>
+<p>        其中k须为整数，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">A_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">θ_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>能够分别取不同值。</p>
+<p>        将上式根据同向分量和正交分量展开，有：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.4-02.bmp" width="42%"></p>
+<p>        令两项分量的幅值分别为：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.4-03.bmp" width="32%"></p>
+<p>        则有：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.4-04.bmp" width="30%"></p>
+<p>        其中， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">X_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">Y_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 也是能够取任意值的变量。即对于任一码字 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">e_{k}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> ，可以将其分解为两个同频正交的振幅键控信号 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>k</mi></msub><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><msub><mi>ω</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X_{k}cos(ω_{c}t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mi>k</mi></msub><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><msub><mi>ω</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y_{k}sin(ω_{c}t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> 之和。</p>
+<p>        对于不同取值的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">X_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">Y_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，我们可以分别用横纵坐标表示在矢量图上。设在某一编码规则下， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">X_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 可以有4个取值，而 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">Y_{k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 也有4个取值，那么如下图所示，合成信号 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">e_{k}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> 的矢量图上共能取到4×4=16个点，故称为16-QAM矢量图，以图上的点代表码元可以选取的位置，则单个码元能够表示4bit的数据。这样的调制原理称为QAM，即正交幅度调制；由于其矢量图酷似星座，该矢量图也被称为星座图。<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.4-1.png" width="26%"></p>
+<div class="box1">
+图2.4-1  16-QAM星座图
+</div>
+<p>        在Wi-Fi5中，数字带通调制采用256-QAM（即16×16），每个码元能够承载8bit数据，而在Wi-Fi6中，数字带通调制采用1024-QAM（即32×32），每个码元能够承载10bit数据。因而，单个码元承载的信息量较前代上升了25%。<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/2.4-2.png" width="50%"></p>
+<div class="box1">
+图2.4-2  256-QAM和1024-QAM星座图
+</div>
+<h3 id="font-color-118899-2-5-一些其他技术-font"><font color="#118899">2.5  一些其他技术</font></h3>
+<p>        除上述技术外，Wi-Fi6还进行了其他方面的优化。</p>
+<p>        更多的有效子载波数量：Wi-Fi6将最小子载波的占用带宽从312.5kHz缩小到78.125kHz，通过更窄的最小子载波带宽增加有效子载波数量，能够成倍地增加传输效率。以HT160频宽为例，有效子载波数量由Wi-Fi5的468个增加到Wi-Fi6的1960个。</p>
+<p>        提升传输可靠性：Wi-Fi6将每个码元的发送时间由Wi-Fi5的3.2us提高为4倍，达到12.8us（Long OFDM Symbol），而空隙时间（GI）为0.8us，这看似减小了信息传输率，实则大大减少了误码率和丢包率，有效提升了信号传输的可靠性。</p>
+<p>        提高覆盖范围： Wi-Fi 6能够使用2MHz频宽进行窄带传输，有效降低频段噪声干扰，提升了终端接受灵敏度，增加了覆盖距离；而上一段落中的Long OFDM Symbol机制，也使得延长传输距离成为可能。</p>
+<p>        减少设备功耗：Wi-Fi6引入了目标唤醒时间（TWT）机制，即AP设备与STA约定协议，仅在收到AP设备唤醒的条件下进行正常通信，在无需通信时则进入“休眠”状态，大大降低了设备功耗；另一方面，“休眠”机制也限制了多STA间的竞争退避，减少了拥塞现象的发生。</p>
+<h2 id="font-color-indianred-size-5-3-wi-fi6的出色性能-font"><font color="Indianred" size="5"><strong>3  Wi-Fi6的出色性能</strong></font></h2>
+<h3 id="font-color-118899-3-1-总吞吐量计算-font"><font color="#118899">3.1  总吞吐量计算</font></h3>
+<p>        Wi-Fi 6采用Long OFDM Symbol机制，单个码元的传输时间为12.8us，间隔时间0.8us。因此，理想状态下，单个子载波内，每秒内能够发送的码元数量为：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/3-01.bmp" width="58%"></p>
+<p>        1024-QAM调制下的每个码元，承载信息量为10bit；考虑到传输校验引入的冗余，Wi-Fi 6仍然采用5B6B编码，故信息传输率R=83.33%。由此得到单个子载波的容量：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/3-02.bmp" width="34%"></p>
+<p>        由前节，Wi-Fi6的单个信道包含有效子载波数量为1960个，故单个信道的最大容量为：<br>
+C=p×C_0=1200Mbps<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/3-03.bmp" width="25%"></p>
+<p>        而Wi-Fi6支持的最大空间流数为8，则得到Wi-Fi6的最大吞吐量为：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/3-04.bmp" width="23%"></p>
+<p>        同等条件下，计算Wi-Fi5的吞吐量：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/3-05.bmp" width="59%"></p>
+<p>        综上，从Wi-Fi 5提升到Wi-Fi 6，信号吞吐量的增幅为：<br>
+<img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/3-06.bmp" width="28%"></p>
+<h3 id="font-color-118899-3-2-高密度无线接入性能-font"><font color="#118899">3.2  高密度无线接入性能</font></h3>
+<p>        单从吞吐量指标上看，39.1%的性能提升可以算是一次进步，但并没有Wi-Fi 3到Wi-Fi 4、Wi-Fi 4到Wi-Fi 5那样能改变数量级的显著飞跃。然而当我们回到最初想解决的问题时，便会发现Wi-Fi 6确乎是一次质的飞跃。</p>
+<p>        在智能设备越发普及的今日，可靠的高密度无线接入越来越凸显其重要性，尤其是在学校、办公室、公共交通等场所中，设备的通信效率可能面临大幅降低甚至拥塞的风险，而Wi-Fi 6中的诸多技术正是为这一场景量身定制的。</p>
+<p>        OFDMA和MU-MIMO技术允许不同用户对信道的共同使用，减少了STA接入等待时间，并有效利用剩余带宽；BSS Coloring机制通过着色字段区分不同服务集，实现更好的空分复用；Long OFDM Symbol机制通过延长码元的传输时间，大大提高了传输可靠性；TWT机制通过“睡眠”和“唤醒”，减小系统整体功耗，并减少了退避重传的发生……</p>
+<p>        这些技术，都能帮助Wi-Fi 6更好地适应高密度无线接入场景。</p>
+<h2 id="font-color-indianred-size-5-4-总结-font"><font color="Indianred" size="5"><strong>4  总结</strong></font></h2>
+<p>        为了在高密度无线接入时更好地保持无线局域网通信效率，Wi-Fi 6应运而生。伴随着OFDMA、UL/DL MU-MIMO、BSS Coloring、TWT等新技术的使用，Wi-Fi的迭代一改之前不断增大带宽的道路，而是朝着更稳定、可靠、安全、舒适的方向开拓。在未来，Wi-Fi 6将配合5G技术，在不同场景下发挥自身优势，共同改变大众的网络生活。</p>
+<hr>
+<h2 id="font-size-3-参考文献：-font"><font size="3"><strong>参考文献：</strong></font></h2>
+<p>[1]黄宇,李雨汝.WiFi6技术现状综述[J].中国无线电,2021,No.309(05):90-91.<br>
+[2]华为技术有限公司.华为Wi-Fi 6(802.11ax)技术白皮书[EB/OL].华为,2019-10-22<br>
+[3]王义博.什么是MIMO？[EB/OL].华为IP知识百科, 2022-04-02<br>
+[4]陈旭彬,杨大成.多用户MIMO:下一代移动通信关键技术[J].移动通信,2007,No.212(10):101-104.<br>
+[5]樊昌信,曹丽娜.通信原理[M]. 北京:国防工业出版社, 2022.6, 228-231.</p>
+<head>
+  <style type="text/css">
+.box1{
+    font-size: 10px;
+	color: grey;
+    text-align: center;  /*水平居中*/
+    }
+  </style>
+</head>
+<head>
+  <style type="text/css">
+.box1{
+    font-size: 20px;
+	color: black;
+    text-align: center;  /*水平居中*/
+    }
+  </style>
+</head>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C/">网络</a></div><div class="post_share"><div class="social-share" data-image="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/wifi666.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/01/12/our22/"><img class="next-cover" src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/our22/032b435b548a31e811ae564ad19ecc8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">和臭宝的2022年终总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/07/hello-world/" title="Hello World!"><img class="cover" src="/2022/04/07/hello-world/%E6%96%B9%E5%9D%97.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-07</div><div class="title">Hello World!</div></div></a></div><div><a href="/2022/05/16/proxy/" title="科学上网指南"><img class="cover" src="/2022/05/16/proxy/wall.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-16</div><div class="title">科学上网指南</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Signalista</div><div class="author-info__description">without fame and fortune</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Signalista"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论区不能显示的bug基本修复，但可能仍需要2s左右的加载时间。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#font-color-indianred-size-5-1-%E5%BC%95%E8%A8%80-font"><span class="toc-text">1  引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-color-indianred-size-5-2-wi-fi6%E7%9A%84%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-font"><span class="toc-text">2  Wi-Fi6的核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-118899-2-1-ofdma%E6%AD%A3%E4%BA%A4%E9%A2%91%E5%88%86%E5%A4%9A%E5%9D%80-font"><span class="toc-text">2.1  OFDMA正交频分多址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-118899-2-2-mu-mimo%E6%8A%80%E6%9C%AF-font"><span class="toc-text">2.2  MU-MIMO技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-118899-2-3-bss%E7%9D%80%E8%89%B2%E6%9C%BA%E5%88%B6-bss-coloring-font"><span class="toc-text">2.3  BSS着色机制（BSS Coloring）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-118899-2-4-1024-qam-font"><span class="toc-text">2.4  1024-QAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-118899-2-5-%E4%B8%80%E4%BA%9B%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF-font"><span class="toc-text">2.5  一些其他技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-color-indianred-size-5-3-wi-fi6%E7%9A%84%E5%87%BA%E8%89%B2%E6%80%A7%E8%83%BD-font"><span class="toc-text">3  Wi-Fi6的出色性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-118899-3-1-%E6%80%BB%E5%90%9E%E5%90%90%E9%87%8F%E8%AE%A1%E7%AE%97-font"><span class="toc-text">3.1  总吞吐量计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#font-color-118899-3-2-%E9%AB%98%E5%AF%86%E5%BA%A6%E6%97%A0%E7%BA%BF%E6%8E%A5%E5%85%A5%E6%80%A7%E8%83%BD-font"><span class="toc-text">3.2  高密度无线接入性能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-color-indianred-size-5-4-%E6%80%BB%E7%BB%93-font"><span class="toc-text">4  总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#font-size-3-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A-font"><span class="toc-text">参考文献：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/12/wifi6/" title="Wi-Fi6（IEEE802.11ax）技术解读"><img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/wifi6/wifi666.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Wi-Fi6（IEEE802.11ax）技术解读"/></a><div class="content"><a class="title" href="/2023/04/12/wifi6/" title="Wi-Fi6（IEEE802.11ax）技术解读">Wi-Fi6（IEEE802.11ax）技术解读</a><time datetime="2023-04-11T16:00:00.000Z" title="发表于 2023-04-12 00:00:00">2023-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/12/our22/" title="和臭宝的2022年终总结"><img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_23/our22/032b435b548a31e811ae564ad19ecc8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="和臭宝的2022年终总结"/></a><div class="content"><a class="title" href="/2023/01/12/our22/" title="和臭宝的2022年终总结">和臭宝的2022年终总结</a><time datetime="2023-01-11T16:00:00.000Z" title="发表于 2023-01-12 00:00:00">2023-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/11/cpp00/" title="C++学习笔记【不定期更新】"><img src="/2022/09/11/cpp00/cpp00.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++学习笔记【不定期更新】"/></a><div class="content"><a class="title" href="/2022/09/11/cpp00/" title="C++学习笔记【不定期更新】">C++学习笔记【不定期更新】</a><time datetime="2022-09-10T16:00:00.000Z" title="发表于 2022-09-11 00:00:00">2022-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/06/disktool/" title="一款软件拯救你的C盘"><img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_22/disktool/catty.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一款软件拯救你的C盘"/></a><div class="content"><a class="title" href="/2022/09/06/disktool/" title="一款软件拯救你的C盘">一款软件拯救你的C盘</a><time datetime="2022-09-05T16:00:00.000Z" title="发表于 2022-09-06 00:00:00">2022-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/12/Brahms/" title="勃拉姆斯和他的热烈"><img src="https://signalista.oss-cn-hangzhou.aliyuncs.com/post_22/Brahms/thetrain.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="勃拉姆斯和他的热烈"/></a><div class="content"><a class="title" href="/2022/08/12/Brahms/" title="勃拉姆斯和他的热烈">勃拉姆斯和他的热烈</a><time datetime="2022-08-11T16:00:00.000Z" title="发表于 2022-08-12 00:00:00">2022-08-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022.4.7 - 2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> Signalista</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">既然，你来了，那就，别走了。</div></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = '//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = new Waline(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://vercel.siggal.run/',
+      avatar: '', 
+      path: location.pathname,
+      visitor: false,
+      dark: 'html[data-theme="dark"]'
+    }, [{"placeholder":"昵称填写qq可以显示qq头像和昵称哦~"},{"avatar":"robohash"}]))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js').then(initWaline)
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script><script src="/js/sakura.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="150,50,150" opacity="0.8" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
