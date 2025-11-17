@@ -192,9 +192,9 @@
     <category term="科技" scheme="http://signalista.github.io/categories/%E7%A7%91%E6%8A%80/"/>
     
     
-    <category term="网络" scheme="http://signalista.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
-    
     <category term="前端" scheme="http://signalista.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="网络" scheme="http://signalista.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
